@@ -25,12 +25,25 @@ body {
 .input {
     width:100%;
     margin-bottom: 100px;
+    display:flex;
+    justify-content: center;
+}
+.input-container {
+    position:relative;
 }
 .input input {
-    width:200px;
-    display:block;
-    margin:0 auto;
-    height: 20px;
+    font-size: 1.5rem;
+    border:0;
+}
+.input button {
+    position:absolute;
+    right:0;
+    height: 100%;
+    text-align: center;
+    padding:5px;
+    border:0;
+    background-color:black;
+    color:white;
 }
 
 /* tata letak default */
@@ -86,9 +99,4 @@ body {
 }
 .information p {
     font-size: 1.1rem;
-}
-
-/* information box (masing-masing) */
-.information:nth-child(2) {
-    /* justify-content: space-evenly; */
 }
