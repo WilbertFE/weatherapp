@@ -7,12 +7,13 @@
 body {
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(135, 206, 250);
+    /* background-color: rgb(135, 206, 250); */
     /* background-color: rgb(124, 252, 0); */
     /* background-color: rgb(255, 165, 0); */
-    /* background-color: rgb(70, 70, 70); */
+    background-color: rgb(70, 70, 70);
     /* background-color: rgb( 255, 250, 250); */
     text-transform: capitalize;
+    color:white;
 }
 
 .container{
@@ -46,11 +47,11 @@ body {
     color:white;
 }
 
-/* tata letak default */
+/* present weather section */
 .grid-container {
-    /* display:grid; */
     grid-template-columns: 1.5fr 2fr;
     text-align: center;
+    margin-bottom: 100px;
 }
 .icon-container{
     margin:0 auto;
@@ -99,4 +100,17 @@ body {
 }
 .information p {
     font-size: 1.1rem;
+}
+
+
+/* forecast section */
+.forecast-container {
+    width:100%;
+    background-color: #ddd;
+    border-radius: 10px;
+    color:black;
+    text-align: center;
+    box-sizing: border-box;
+    padding:5px;
+    display:none;
 }

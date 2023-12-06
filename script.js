@@ -32,8 +32,9 @@ function updateUI (data) {
     const clouds = data.clouds.all;
 
     // update UI
-    let container = '';
-    container = `
+    let gridContainerFragment= '';
+    let forecastContainerFragment = '';
+    gridContainerFragment = `
     <div class="icon-container">
                 <h1>${cityName}</h1>
                 <div class="image-container"></div>
@@ -71,13 +72,18 @@ function updateUI (data) {
                     <h1>${clouds}%</h1>
                     <p>menutupi langit</p>
                 </div>
-            </div>`;
-        // append container to gridContainer and change the display into grid, change the icon
+            </div>`; 
+        forecastContainerFragment += `<h2>lihat ramalan 7 hari ke depan?</h2>`;
+        // append fragment to gridContainer and change the display into grid, change the icon
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.style.display = 'grid';
-        gridContainer.innerHTML = container;
+        gridContainer.innerHTML = gridContainerFragment;
         const icon = document.querySelector('.image-container');
         icon.style.backgroundImage = `url(https://openweathermap.org/img/wn/${iconCode}@2x.png)`;
+        // append fragment to forecast container
+        const forecastContainer = document.querySelector('.forecast-container');
+        forecastContainer.innerHTML = forecastContainerFragment;
+        forecastContainer.style.display = 'block';
 }
 
 function getData (cityName) {
