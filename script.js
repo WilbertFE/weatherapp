@@ -81,7 +81,7 @@ function updateUI (data) {
 }
 
 function getData (cityName) {
-    return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a`)
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a`)
         .then(response => response.json())
         .then(response => response);
 }
