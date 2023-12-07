@@ -13,19 +13,41 @@ btn.addEventListener('click', async function (){
     updateUI(data);
 });
 
-// forecast section (event binding)
+// daily forecast section (event binding)
 document.addEventListener('click', async function(e){
     if (e.target.classList.contains('forecast')){
-        const data = await getDataForecast();
-        console.log(data);
+        const data = await getDataForecast(e.target.dataset.city);
+        updateUIForecast(data);
     }
 });
 
 
 
 
-function getDataForecast(){
-    return fetch('https://api.openweathermap.org/data/2.5/forecast?q=medan&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a&cnt=5')
+function updateUIForecast(data){
+    console.log(data);
+    let dailyForecastFragments = '';
+    let dailyForecastFragment = '';
+    for (let i=0; i<data.list.length; i++){
+        dailyForecastFragment += `
+        <div class="hourly-forecast">
+            <h4>${data.list[i].dt_txt}</h4>
+            <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather.png">
+            <h3>${Math.round(data.list[i].main.temp)}°C</h3>
+        </div>
+        `;
+    }
+    dailyForecastFragments = `<div class="daily-forecast">${dailyForecastFragment}</div>`;
+    // append element
+    const forecastContainer = document.querySelector('.forecast-container');
+    forecastContainer.classList.add('fContainer');
+    forecastContainer.innerHTML = dailyForecastFragments;
+    const text = document.querySelector('.daily-forecast-text');
+    text.style.display = 'block';
+}
+
+function getDataForecast(cityName){
+    return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a&cnt=5`)
         .then(response => response.json())
         .then(response => response);
 }
@@ -49,7 +71,7 @@ function updateUI (data) {
     let forecastContainerFragment = '';
     gridContainerFragment = `
     <div class="icon-container">
-                <h1 data-city="${cityName}" class="cityName">${cityName}</h1>
+                <h1>${cityName}</h1>
                 <div class="image-container"></div>
                 <h2>${main}</h2>
                 <p>${description}</p>
@@ -86,8 +108,8 @@ function updateUI (data) {
                     <p>menutupi langit</p>
                 </div>
             </div>`; 
-        forecastContainerFragment += `<h2 class="forecast">lihat ramalan cuaca?</h2>
-        <p class="forecast">ramalan harian dan mingguan tersedia</p>`;
+        forecastContainerFragment += `<h2 class="forecast" data-city="${cityName}">lihat ramalan cuaca?</h2>
+        <p class="forecast" data-city="${cityName}">ramalan harian dan mingguan tersedia</p>`;
         // append fragment to gridContainer and change the display into grid, change the icon
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.style.display = 'grid';
@@ -97,6 +119,7 @@ function updateUI (data) {
         // append fragment to forecast container
         const forecastContainer = document.querySelector('.forecast-container');
         forecastContainer.innerHTML = forecastContainerFragment;
+        forecastContainer.classList.remove('fContainer');
         forecastContainer.style.display = 'block';
 }
 

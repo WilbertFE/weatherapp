@@ -130,12 +130,10 @@ body {
     box-sizing: border-box;
     padding:10px;
     overflow-x: auto;
-    /* background-color: black; */
-    /* border:1px solid white; */
-    /* border-radius: 10px; */
-    
-    border-top:1px solid #333;
-    border-bottom: 1px solid #333;
+    background-color: black;
+    border:1px solid white;
+    border-radius: 10px;
+    display:none;
 }
 .daily-forecast {
     display:flex;
@@ -146,4 +144,14 @@ body {
     width:300px;
     box-sizing: border-box;
     text-align: center;
+}
+
+
+
+
+/* kelas responsif */
+.fContainer {
+    background-color: rgba(0,0,0,.2);
+    border:0;
+    border-radius: 0;
 }
