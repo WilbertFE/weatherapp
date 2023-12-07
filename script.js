@@ -13,9 +13,22 @@ btn.addEventListener('click', async function (){
     updateUI(data);
 });
 
+// forecast section (event binding)
+document.addEventListener('click', async function(e){
+    if (e.target.classList.contains('forecast')){
+        const data = await getDataForecast();
+        console.log(data);
+    }
+});
 
 
 
+
+function getDataForecast(){
+    return fetch('https://api.openweathermap.org/data/2.5/forecast?q=medan&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a&cnt=5')
+        .then(response => response.json())
+        .then(response => response);
+}
 
 function updateUI (data) {
     // taking information that is needed
@@ -36,7 +49,7 @@ function updateUI (data) {
     let forecastContainerFragment = '';
     gridContainerFragment = `
     <div class="icon-container">
-                <h1>${cityName}</h1>
+                <h1 data-city="${cityName}" class="cityName">${cityName}</h1>
                 <div class="image-container"></div>
                 <h2>${main}</h2>
                 <p>${description}</p>
@@ -73,7 +86,8 @@ function updateUI (data) {
                     <p>menutupi langit</p>
                 </div>
             </div>`; 
-        forecastContainerFragment += `<h2>lihat ramalan 7 hari ke depan?</h2>`;
+        forecastContainerFragment += `<h2 class="forecast">lihat ramalan cuaca?</h2>
+        <p class="forecast">ramalan harian dan mingguan tersedia</p>`;
         // append fragment to gridContainer and change the display into grid, change the icon
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.style.display = 'grid';

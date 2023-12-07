@@ -104,13 +104,46 @@ body {
 
 
 /* forecast section */
-.forecast-container {
-    width:100%;
-    background-color: #ddd;
-    border-radius: 10px;
-    color:black;
-    text-align: center;
-    box-sizing: border-box;
-    padding:5px;
+.forecast-container::-webkit-scrollbar {
+    display: none;
+}
+/* .forecast-container::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .forecast-container::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  
+  .forecast-container::-webkit-scrollbar-track {
+    background-color: transparent;
+  } */
+
+
+.daily-forecast-text {
+    margin-bottom: 10px;
     display:none;
+}
+.forecast-container {
+    text-align: center;
+    width:100%;
+    box-sizing: border-box;
+    padding:10px;
+    overflow-x: auto;
+    /* background-color: black; */
+    /* border:1px solid white; */
+    /* border-radius: 10px; */
+    
+    border-top:1px solid #333;
+    border-bottom: 1px solid #333;
+}
+.daily-forecast {
+    display:flex;
+    width:1800px;
+    justify-content: space-evenly;
+}
+.hourly-forecast {
+    width:300px;
+    box-sizing: border-box;
+    text-align: center;
 }
