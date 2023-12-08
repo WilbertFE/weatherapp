@@ -109,20 +109,22 @@ body {
 }
 /* .forecast-container::-webkit-scrollbar {
     width: 12px;
+    height: 3px;
   }
   
   .forecast-container::-webkit-scrollbar-thumb {
-    background-color: transparent;
+    background-color: white;
   }
   
   .forecast-container::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: white;
   } */
 
 
 .daily-forecast-text {
     margin-bottom: 10px;
     display:none;
+    margin-left: 10px;
 }
 .forecast-container {
     text-align: center;
@@ -137,8 +139,12 @@ body {
 }
 .daily-forecast {
     display:flex;
-    width:1800px;
     justify-content: space-evenly;
+    width: 2600px;
+    background-color: rgba(0,0,0,.2);
+    box-sizing: border-box;
+    padding:10px;
+    margin-bottom: 50px;
 }
 .hourly-forecast {
     width:300px;
@@ -146,12 +152,33 @@ body {
     text-align: center;
 }
 
+.weekly-forecast {
+    display:flex;
+    width:2600px;
+    box-sizing: border-box;
+    padding:10px;
+    background-color: rgba(0,0,0,.2);
+    justify-content: space-evenly;
+}
+
+.weekly-forecast-text {
+    text-align: left;
+    margin-bottom: 10px;
+    display:none;
+}
+
+.twelve-forecast {
+    width:300px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
 
 
 
 /* kelas responsif */
 .fContainer {
-    background-color: rgba(0,0,0,.2);
+    background-color: transparent;
     border:0;
     border-radius: 0;
 }

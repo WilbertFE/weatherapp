@@ -18,26 +18,53 @@ document.addEventListener('click', async function(e){
     if (e.target.classList.contains('forecast')){
         const data = await getDataForecast(e.target.dataset.city);
         updateUIForecast(data);
+        updateUIForecastWeekly(data);
     }
 });
 
 
 
 
-function updateUIForecast(data){
+function updateUIForecastWeekly(data){
     console.log(data);
+    let fragment = '';
+    for (let i=0; i<data.list.length; i++){
+        if (data.list[i].dt_txt.includes('12:00')){
+            fragment += `
+            <div class="twelve-forecast">
+                <h4>${data.list[i].dt_txt}</h4>
+                <h4>${data.city.name}</h4>
+                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather.png">
+                <h3>31°C</h3>
+            </div>
+            `;
+        }
+    }
+    // append element
+    const container = document.querySelector('.weekly-forecast');
+    console.log(container);
+    container.innerHTML = fragment;
+    // text display
+    const text = document.querySelector('.weekly-forecast-text');
+    text.style.display = 'block';
+}
+
+
+
+function updateUIForecast(data){
     let dailyForecastFragments = '';
     let dailyForecastFragment = '';
-    for (let i=0; i<data.list.length; i++){
+    for (let i=0; i<8; i++){
         dailyForecastFragment += `
         <div class="hourly-forecast">
             <h4>${data.list[i].dt_txt}</h4>
+            <h4>${data.city.name}</h4>
             <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather.png">
             <h3>${Math.round(data.list[i].main.temp)}°C</h3>
         </div>
         `;
     }
-    dailyForecastFragments = `<div class="daily-forecast">${dailyForecastFragment}</div>`;
+    dailyForecastFragments = `<div class="daily-forecast">${dailyForecastFragment}</div> <h2 class="weekly-forecast-text">ramalan minggu ini</h2> <div class="weekly-forecast"></div>`;
     // append element
     const forecastContainer = document.querySelector('.forecast-container');
     forecastContainer.classList.add('fContainer');
@@ -47,7 +74,7 @@ function updateUIForecast(data){
 }
 
 function getDataForecast(cityName){
-    return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a&cnt=5`)
+    return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a&cnt=40`)
         .then(response => response.json())
         .then(response => response);
 }
@@ -121,6 +148,9 @@ function updateUI (data) {
         forecastContainer.innerHTML = forecastContainerFragment;
         forecastContainer.classList.remove('fContainer');
         forecastContainer.style.display = 'block';
+        // mengubah display text jadi none
+        const text = document.querySelector('.daily-forecast-text');
+        text.style.display = 'none';
 }
 
 function getData (cityName) {
