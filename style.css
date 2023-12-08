@@ -123,8 +123,7 @@ body {
 
 .daily-forecast-text {
     margin-bottom: 10px;
-    display:none;
-    margin-left: 10px;
+    text-align: left;
 }
 .forecast-container {
     text-align: center;
@@ -136,6 +135,7 @@ body {
     border:1px solid white;
     border-radius: 10px;
     display:none;
+    margin-top: 200px;
 }
 .daily-forecast {
     display:flex;
@@ -164,7 +164,6 @@ body {
 .weekly-forecast-text {
     text-align: left;
     margin-bottom: 10px;
-    display:none;
 }
 
 .twelve-forecast {
