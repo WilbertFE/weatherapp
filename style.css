@@ -104,21 +104,17 @@ body {
 
 
 /* forecast section */
-.forecast-container::-webkit-scrollbar {
-    display: none;
-}
-/* .forecast-container::-webkit-scrollbar {
-    width: 12px;
-    height: 3px;
+.daily-forecast::-webkit-scrollbar, .weekly-forecast::-webkit-scrollbar {
+    height: 2px;
   }
   
-  .forecast-container::-webkit-scrollbar-thumb {
+  .daily-forecast::-webkit-scrollbar-thumb, .weekly-forecast::-webkit-scrollbar-thumb{
     background-color: white;
   }
   
-  .forecast-container::-webkit-scrollbar-track {
-    background-color: white;
-  } */
+  .daily-forecast::-webkit-scrollbar-track, .weekly-forecast::-webkit-scrollbar-track {
+    background-color: black;
+  }
 
 
 .daily-forecast-text {
@@ -130,7 +126,6 @@ body {
     width:100%;
     box-sizing: border-box;
     padding:10px;
-    overflow-x: auto;
     background-color: black;
     border:1px solid white;
     border-radius: 10px;
@@ -139,26 +134,28 @@ body {
 }
 .daily-forecast {
     display:flex;
-    justify-content: space-evenly;
-    width: 2600px;
+    justify-content: space-between;
+    max-width: 100%;
     background-color: rgba(0,0,0,.2);
     box-sizing: border-box;
     padding:10px;
     margin-bottom: 50px;
+    overflow: auto;
 }
 .hourly-forecast {
-    width:300px;
+    min-width:300px;
     box-sizing: border-box;
     text-align: center;
 }
 
 .weekly-forecast {
     display:flex;
-    width:2600px;
+    max-width:100%;
     box-sizing: border-box;
     padding:10px;
     background-color: rgba(0,0,0,.2);
-    justify-content: space-evenly;
+    justify-content: space-between;
+    overflow:auto;
 }
 
 .weekly-forecast-text {
@@ -167,7 +164,7 @@ body {
 }
 
 .twelve-forecast {
-    width:300px;
+    min-width:300px;
     text-align: center;
     box-sizing: border-box;
 }
