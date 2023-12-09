@@ -1,22 +1,30 @@
 
 // get data when button clicked
-const input = document.querySelector('.input-container input');
 const btn = document.querySelector('.input-container button');
 
 btn.addEventListener('click', async function (){
     // taking data
+    const input = document.querySelector('.input-container input');
+    try {
     const data = await getData(input.value);
     input.value = '';
     updateUI(data);
+    } catch(err){
+        input.value = '';
+        alert(err); 
+    }
 });
 
 // daily & weekly forecast section (event binding)
 document.addEventListener('click', async function(e){
     if (e.target.classList.contains('forecast')){
+        try {
         const data = await getDataForecast(e.target.dataset.city);
-        console.log(data);
         updateUIForecast(data);
         updateUIForecastWeekly(data);
+        } catch (err) {
+            alert(err);
+        }
     }
 });
 
@@ -24,6 +32,36 @@ document.addEventListener('click', async function(e){
 
 
 
+
+
+function getDataForecast(cityName){
+    return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a&cnt=40`)
+        .then(response => {
+            if (!response.ok){
+                throw new Error(response.statusText + ' (ada kesalahan pada sistem)');
+            }
+            return response.json();
+        })
+        .then(response => response);
+}
+
+
+function getData (cityName) {
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a`)
+        .then(response => {
+            if (!response.ok){
+                if (response.statusText === 'Bad Request'){
+                    throw new Error('Tolong Isi Nama Kota Dengan Benar!');
+                } else if (response.statusText === 'Not Found'){
+                    throw new Error('Data Tidak Ditemukan');
+                } else {
+                    throw new Error(response.statusText + ' (ada kesalahan pada sistem)');
+                }
+            }
+            return response.json();
+        })
+        .then(response => response);
+}
 
 
 function updateUIForecastWeekly(data){
@@ -69,11 +107,6 @@ function updateUIForecast(data){
     forecastContainer.innerHTML = dailyForecastFragments;
 }
 
-function getDataForecast(cityName){
-    return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a&cnt=40`)
-        .then(response => response.json())
-        .then(response => response);
-}
 
 function updateUI (data) {
     // update UI
@@ -133,8 +166,3 @@ function updateUI (data) {
         forecastContainer.style.display = 'block';
 }
 
-function getData (cityName) {
-    return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a`)
-        .then(response => response.json())
-        .then(response => response);
-}
