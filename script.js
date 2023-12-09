@@ -28,6 +28,16 @@ document.addEventListener('click', async function(e){
     }
 });
 
+// themes 
+const comboBox = document.querySelector('#tema');
+comboBox.addEventListener('change', function(){
+    if(comboBox.value === 'blue'){
+        document.body.style.backgroundColor= 'rgb(135, 206, 250)';
+    } else {
+        document.body.style.backgroundColor= 'rgb(70,70,70)';
+    }
+});
+
 function getData (cityName) {
     return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=id&units=metric&mode=json&appid=736d300233c8e86a886feabe3ef4b69a`)
         .then(response => {

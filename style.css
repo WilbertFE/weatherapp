@@ -48,6 +48,11 @@ body {
     color:white;
 }
 
+.themes label {
+    display:block;
+    margin-bottom: 10px;
+}
+
 /* present weather section */
 .grid-container {
     grid-template-columns: 1.5fr 2fr;
@@ -56,6 +61,7 @@ body {
 }
 .icon-container{
     margin:0 auto;
+    width:100%;
 }
 .icon-container h1 {
     font-size: 4rem;
@@ -67,7 +73,7 @@ body {
     font-weight: lighter;
 }
 .image-container {
-    height: 250px;
+    height:250px;
     background-image: url(https://openweathermap.org/img/wn/10d@2x.png);
     background-size: cover;
     background-position: center;
@@ -199,6 +205,9 @@ body {
         box-sizing: border-box;
         padding:10px;
     }
+    .input {
+        margin-bottom: 50px;
+    }
     .daily-forecast-text {
         text-align: center;
         font-size: 1.5rem;
@@ -231,5 +240,8 @@ body {
     }
     .forecast-container {
         margin-top: 150px;
+    }
+    .image-container {
+        height:300px;
     }
 }
