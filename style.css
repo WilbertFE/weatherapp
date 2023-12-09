@@ -189,10 +189,15 @@ body {
 
 /* 1. ukuran hp */
 @media only screen and (max-width:767px){
+    .container {
+        padding:10px;
+    }
     .grid-container {
         grid-template-columns: repeat(1,1fr);
         row-gap: 50px;
         font-size: 1rem;
+        box-sizing: border-box;
+        padding:10px;
     }
     .daily-forecast-text {
         text-align: center;
